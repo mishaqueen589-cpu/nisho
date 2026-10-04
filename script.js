@@ -1,593 +1,816 @@
 ```javascript
-const CORRECT_PASSWORD = '831';
+document.addEventListener("DOMContentLoaded", () => {
 
-const screens = document.querySelectorAll('.screen');
+  /* =========================
+     PASSWORD
+  ========================= */
 
-const passwordInput = document.getElementById('passwordInput');
-const unlockBtn = document.getElementById('unlockBtn');
-const passwordError = document.getElementById('passwordError');
+  const CORRECT_PASSWORD = "831";
 
-const birthdayContinue = document.getElementById('birthdayContinue');
+  const screens = document.querySelectorAll(".screen");
 
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const tryAgainBtn = document.getElementById('tryAgainBtn');
-const noReaction = document.getElementById('noReaction');
+  const passwordInput = document.getElementById("passwordInput");
+  const unlockBtn = document.getElementById("unlockBtn");
+  const passwordError = document.getElementById("passwordError");
 
-const mainWebsite = document.getElementById('mainWebsite');
+  const birthdayContinue = document.getElementById("birthdayContinue");
 
-const countdownNumber = document.getElementById('countdownNumber');
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const tryAgainBtn = document.getElementById("tryAgainBtn");
+  const noReaction = document.getElementById("noReaction");
 
-const birthdaySong = document.getElementById('birthdaySong');
-const musicButton = document.getElementById('musicButton');
-const heroMusicButton = document.getElementById('heroMusicButton');
+  const mainWebsite = document.getElementById("mainWebsite");
 
-const surpriseBox = document.getElementById('surpriseBox');
-const openBox = document.getElementById('openBox');
-const surpriseMessage = document.getElementById('surpriseMessage');
+  const countdownNumber = document.getElementById("countdownNumber");
 
+  const birthdaySong = document.getElementById("birthdaySong");
+  const musicButton = document.getElementById("musicButton");
+  const heroMusicButton = document.getElementById("heroMusicButton");
 
-/* =========================
-   SCREEN NAVIGATION
-========================= */
+  const surpriseBox = document.getElementById("surpriseBox");
+  const openBox = document.getElementById("openBox");
+  const surpriseMessage = document.getElementById("surpriseMessage");
 
-function showScreen(id) {
-  screens.forEach(screen => screen.classList.remove('active'));
-
-  document.getElementById(id).classList.add('active');
-
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
+  const heartLayer = document.getElementById("heartLayer");
+  const confettiLayer = document.getElementById("confettiLayer");
 
 
-/* =========================
-   HEART ANIMATION
-========================= */
+  /* =========================
+     SCREEN NAVIGATION
+  ========================= */
 
-function burstHearts(amount = 25) {
-  const layer = document.getElementById('heartLayer');
+  function showScreen(id) {
 
-  for (let i = 0; i < amount; i++) {
-    const heart = document.createElement('span');
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+    });
 
-    heart.className = 'float-heart';
+    const targetScreen = document.getElementById(id);
 
-    heart.textContent = ['♡', '♥', '💗', '💖', '💕'][
-      Math.floor(Math.random() * 5)
-    ];
+    if (!targetScreen) {
+      console.error("Screen not found:", id);
+      return;
+    }
 
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.bottom = (Math.random() * 25) + 'vh';
-    heart.style.animationDelay = (Math.random() * .8) + 's';
-    heart.style.fontSize = (12 + Math.random() * 22) + 'px';
+    targetScreen.classList.add("active");
 
-    layer.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 3000);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
-}
 
 
-/* =========================
-   CONFETTI
-========================= */
+  /* =========================
+     HEART ANIMATION
+  ========================= */
 
-function confettiBurst(amount = 45) {
-  const layer = document.getElementById('confettiLayer');
+  function burstHearts(amount = 20) {
 
-  for (let i = 0; i < amount; i++) {
-    const piece = document.createElement('span');
+    if (!heartLayer) return;
 
-    piece.className = 'confetti';
+    for (let i = 0; i < amount; i++) {
 
-    piece.style.left = '50vw';
-    piece.style.top = '42vh';
+      const heart = document.createElement("span");
 
-    piece.style.setProperty(
-      '--x',
-      ((Math.random() - .5) * 90) + 'vw'
-    );
+      heart.className = "float-heart";
 
-    piece.style.setProperty(
-      '--y',
-      ((Math.random() - .2) * 85) + 'vh'
-    );
+      const hearts = ["♡", "♥", "💗", "💖", "💕"];
 
-    piece.style.animationDelay = (Math.random() * .25) + 's';
+      heart.textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
 
-    layer.appendChild(piece);
+      heart.style.left =
+        Math.random() * 100 + "vw";
 
-    setTimeout(() => piece.remove(), 2300);
+      heart.style.bottom =
+        Math.random() * 25 + "vh";
+
+      heart.style.animationDelay =
+        Math.random() * 0.8 + "s";
+
+      heart.style.fontSize =
+        12 + Math.random() * 22 + "px";
+
+      heartLayer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    }
   }
-}
 
 
-/* =========================
-   PASSWORD
-========================= */
+  /* =========================
+     CONFETTI
+  ========================= */
 
-unlockBtn.addEventListener('click', unlock);
+  function confettiBurst(amount = 40) {
 
-passwordInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    unlock();
+    if (!confettiLayer) return;
+
+    for (let i = 0; i < amount; i++) {
+
+      const piece = document.createElement("span");
+
+      piece.className = "confetti";
+
+      piece.style.left = "50vw";
+      piece.style.top = "42vh";
+
+      piece.style.setProperty(
+        "--x",
+        ((Math.random() - 0.5) * 90) + "vw"
+      );
+
+      piece.style.setProperty(
+        "--y",
+        ((Math.random() - 0.2) * 85) + "vh"
+      );
+
+      piece.style.animationDelay =
+        Math.random() * 0.25 + "s";
+
+      confettiLayer.appendChild(piece);
+
+      setTimeout(() => {
+        piece.remove();
+      }, 2300);
+    }
   }
-});
-
-function unlock() {
-  if (passwordInput.value.trim() === CORRECT_PASSWORD) {
-
-    passwordError.textContent = '';
-
-    showScreen('birthdayScreen');
-
-    burstHearts(25);
-    confettiBurst(25);
-
-  } else {
-
-    passwordError.textContent =
-      'Oops! That password is not correct. 💗';
-
-    passwordInput.classList.add('shake');
-
-    setTimeout(() => {
-      passwordInput.classList.remove('shake');
-    }, 500);
-  }
-}
 
 
-/* =========================
-   BIRTHDAY CONTINUE
-========================= */
+  /* =========================
+     PASSWORD
+  ========================= */
 
-birthdayContinue.addEventListener('click', () => {
+  function unlock() {
 
-  showScreen('giftQuestionScreen');
+    if (!passwordInput) return;
 
-  burstHearts(15);
+    const enteredPassword =
+      passwordInput.value.trim();
 
-});
+    if (enteredPassword === CORRECT_PASSWORD) {
 
+      if (passwordError) {
+        passwordError.textContent = "";
+      }
 
-/* =========================
-   COUNTDOWN
-========================= */
+      showScreen("birthdayScreen");
 
-yesBtn.addEventListener('click', startCountdown);
-
-function startCountdown() {
-
-  showScreen('countdownScreen');
-
-  let count = 3;
-
-  countdownNumber.textContent = count;
-
-  burstHearts(15);
-
-  const timer = setInterval(() => {
-
-    count--;
-
-    if (count > 0) {
-
-      countdownNumber.textContent = count;
-
-      countdownNumber.style.animation = 'none';
-
-      void countdownNumber.offsetWidth;
-
-      countdownNumber.style.animation =
-        'countdownPop .8s ease both';
+      burstHearts(25);
+      confettiBurst(25);
 
     } else {
 
-      clearInterval(timer);
+      if (passwordError) {
 
-      countdownNumber.textContent = '💗';
+        passwordError.textContent =
+          "Oops! That password is not correct. 💗";
+
+      }
+
+      passwordInput.classList.remove("shake");
+
+      void passwordInput.offsetWidth;
+
+      passwordInput.classList.add("shake");
 
       setTimeout(() => {
-
-        showScreen('chooseScreen');
-
-        confettiBurst(55);
-        burstHearts(35);
-
-      }, 750);
+        passwordInput.classList.remove("shake");
+      }, 500);
     }
-
-  }, 900);
-}
-
-
-/* =========================
-   NO BUTTON
-========================= */
-
-noBtn.addEventListener('click', () => {
-
-  noReaction.classList.remove('hidden');
-
-  noBtn.classList.add('hidden');
-
-  burstHearts(8);
-
-});
-
-tryAgainBtn.addEventListener('click', () => {
-
-  noReaction.classList.add('hidden');
-
-  noBtn.classList.remove('hidden');
-
-});
-
-
-/* =========================
-   GIFT CHOICES
-========================= */
-
-document.querySelectorAll('.gift-choice').forEach(button => {
-
-  button.addEventListener('click', () => {
-
-    mainWebsite.classList.remove('hidden');
-
-    screens.forEach(screen =>
-      screen.classList.remove('active')
-    );
-
-    const target =
-      document.getElementById(button.dataset.target);
-
-    setTimeout(() => {
-
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-
-    }, 80);
-
-    burstHearts(25);
-
-  });
-
-});
-
-
-function scrollToSection(id) {
-
-  mainWebsite.classList.remove('hidden');
-
-  document.getElementById(id).scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-
-  burstHearts(10);
-}
-
-window.scrollToSection = scrollToSection;
-
-
-/* =========================
-   MUSIC
-========================= */
-
-async function toggleMusic() {
-
-  if (birthdaySong.paused) {
-
-    try {
-
-      await birthdaySong.play();
-
-      updateMusicButtons(true);
-
-    } catch (error) {
-
-      updateMusicButtons(false);
-
-      alert(
-        'Tap the music button once more to start the music. 🎵'
-      );
-
-    }
-
-  } else {
-
-    birthdaySong.pause();
-
-    updateMusicButtons(false);
-
   }
-}
 
 
-function updateMusicButtons(isPlaying) {
+  if (unlockBtn) {
+    unlockBtn.addEventListener("click", unlock);
+  }
 
-  musicButton.textContent =
-    isPlaying
-      ? '⏸ Pause Birthday Music'
-      : '🎵 Play Birthday Music';
+  if (passwordInput) {
 
-  heroMusicButton.textContent =
-    isPlaying
-      ? '🎵 Music: ON'
-      : '🎵 Music: OFF';
-}
+    passwordInput.addEventListener("keydown", event => {
 
-
-musicButton.addEventListener('click', toggleMusic);
-
-heroMusicButton.addEventListener('click', toggleMusic);
-
-
-/* =========================
-   SURPRISE BOX
-========================= */
-
-openBox.addEventListener('click', () => {
-
-  if (surpriseBox.classList.contains('open')) return;
-
-  surpriseBox.classList.add('open');
-
-  document
-    .querySelectorAll('.box-video video')
-    .forEach(video => {
-
-      video.play().catch(() => {});
+      if (event.key === "Enter") {
+        unlock();
+      }
 
     });
 
-  surpriseMessage.textContent =
-    'Surprise! 💗 I hope these little memories make you smile.';
-
-  openBox.textContent =
-    'You found it! 💕';
-
-  confettiBurst(65);
-
-  burstHearts(60);
-
-});
+  }
 
 
-/* =========================
-   VIDEO FULLSCREEN
-========================= */
+  /* =========================
+     BIRTHDAY CONTINUE
+  ========================= */
 
-function openVideoFullscreen(videoId) {
+  if (birthdayContinue) {
 
-  const video = document.getElementById(videoId);
+    birthdayContinue.addEventListener("click", () => {
 
-  if (!video) return;
+      showScreen("giftQuestionScreen");
 
+      burstHearts(15);
 
-  /* iPhone / Safari */
-
-  if (video.webkitEnterFullscreen) {
-
-    video.webkitEnterFullscreen();
-
-    return;
+    });
 
   }
 
 
-  /* Modern browsers */
+  /* =========================
+     YES BUTTON / COUNTDOWN
+  ========================= */
 
-  if (video.requestFullscreen) {
+  function startCountdown() {
 
-    video.requestFullscreen().catch(() => {});
+    if (!countdownNumber) return;
 
-    return;
+    showScreen("countdownScreen");
+
+    let count = 3;
+
+    countdownNumber.textContent = count;
+
+    countdownNumber.style.animation =
+      "countdownPop .8s ease both";
+
+    burstHearts(15);
+
+    const timer = setInterval(() => {
+
+      count--;
+
+      if (count > 0) {
+
+        countdownNumber.textContent = count;
+
+        countdownNumber.style.animation = "none";
+
+        void countdownNumber.offsetWidth;
+
+        countdownNumber.style.animation =
+          "countdownPop .8s ease both";
+
+      } else {
+
+        clearInterval(timer);
+
+        countdownNumber.textContent = "💗";
+
+        setTimeout(() => {
+
+          showScreen("chooseScreen");
+
+          confettiBurst(55);
+          burstHearts(35);
+
+        }, 750);
+      }
+
+    }, 900);
+  }
+
+
+  if (yesBtn) {
+    yesBtn.addEventListener("click", startCountdown);
+  }
+
+
+  /* =========================
+     NO BUTTON
+  ========================= */
+
+  if (noBtn && noReaction) {
+
+    noBtn.addEventListener("click", () => {
+
+      noReaction.classList.remove("hidden");
+      noBtn.classList.add("hidden");
+
+      burstHearts(8);
+
+    });
 
   }
 
 
-  /* Older Safari / WebKit */
+  if (tryAgainBtn && noReaction && noBtn) {
 
-  if (video.webkitRequestFullscreen) {
+    tryAgainBtn.addEventListener("click", () => {
 
-    video.webkitRequestFullscreen();
+      noReaction.classList.add("hidden");
+      noBtn.classList.remove("hidden");
 
-    return;
+    });
 
   }
 
-}
 
+  /* =========================
+     GIFT CHOICES
+  ========================= */
 
-/* Make function available to HTML onclick */
+  document.querySelectorAll(".gift-choice").forEach(button => {
 
-window.openVideoFullscreen = openVideoFullscreen;
+    button.addEventListener("click", () => {
 
+      if (!mainWebsite) return;
 
-/* =========================
-   CLICK ANYWHERE = HEART
-========================= */
+      mainWebsite.classList.remove("hidden");
 
-document.addEventListener('click', e => {
+      screens.forEach(screen => {
+        screen.classList.remove("active");
+      });
 
-  if (
-    e.target.closest(
-      'button, input, video, .gallery-item, .photo-viewer'
-    )
-  ) return;
+      const targetId =
+        button.getAttribute("data-target");
 
-  const heart = document.createElement('span');
+      const target =
+        document.getElementById(targetId);
 
-  heart.className = 'float-heart';
+      if (target) {
 
-  heart.textContent =
-    ['♡', '♥', '💗', '✨'][
-      Math.floor(Math.random() * 4)
-    ];
+        setTimeout(() => {
 
-  heart.style.left = e.clientX + 'px';
-  heart.style.top = e.clientY + 'px';
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
-  heart.style.position = 'fixed';
+        }, 100);
 
-  heart.style.fontSize = '20px';
+      }
 
-  document
-    .getElementById('heartLayer')
-    .appendChild(heart);
+      burstHearts(25);
 
-  setTimeout(() => heart.remove(), 2300);
-
-});
-
-
-/* =========================
-   GALLERY VIEWER
-========================= */
-
-const galleryItems =
-  document.querySelectorAll('.gallery-item');
-
-const photoViewer =
-  document.getElementById('photoViewer');
-
-const viewerImage =
-  document.getElementById('viewerImage');
-
-const viewerCaption =
-  document.getElementById('viewerCaption');
-
-const viewerClose =
-  document.getElementById('viewerClose');
-
-const viewerPrev =
-  document.getElementById('viewerPrev');
-
-const viewerNext =
-  document.getElementById('viewerNext');
-
-let currentPhoto = 0;
-
-const galleryPhotos = [];
-
-
-galleryItems.forEach((item, index) => {
-
-  const image = item.querySelector('img');
-
-  const caption =
-    item.querySelector('.gallery-caption p');
-
-  galleryPhotos.push({
-    src: image.src,
-    caption: caption.textContent
-  });
-
-  item.addEventListener('click', () => {
-
-    currentPhoto = index;
-
-    showPhoto(currentPhoto);
-
-    photoViewer.classList.add('active');
+    });
 
   });
 
-});
+
+  /* =========================
+     SCROLL TO SECTION
+  ========================= */
+
+  function scrollToSection(id) {
+
+    if (!mainWebsite) return;
+
+    mainWebsite.classList.remove("hidden");
+
+    const target =
+      document.getElementById(id);
+
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    burstHearts(10);
+  }
+
+  window.scrollToSection = scrollToSection;
 
 
-function showPhoto(index) {
+  /* =========================
+     MUSIC
+  ========================= */
 
-  viewerImage.src =
-    galleryPhotos[index].src;
+  async function toggleMusic() {
 
-  viewerCaption.textContent =
-    galleryPhotos[index].caption;
+    if (!birthdaySong) return;
 
-}
+    if (birthdaySong.paused) {
 
+      try {
 
-viewerClose.addEventListener('click', () =>
-  photoViewer.classList.remove('active')
-);
+        await birthdaySong.play();
 
+        updateMusicButtons(true);
 
-viewerNext.addEventListener('click', () => {
+      } catch (error) {
 
-  currentPhoto =
-    (currentPhoto + 1) %
-    galleryPhotos.length;
+        console.error("Music could not start:", error);
 
-  showPhoto(currentPhoto);
+        updateMusicButtons(false);
 
-});
+        alert(
+          "Tap the music button once more to start the music. 🎵"
+        );
 
+      }
 
-viewerPrev.addEventListener('click', () => {
+    } else {
 
-  currentPhoto =
-    (currentPhoto - 1 + galleryPhotos.length) %
-    galleryPhotos.length;
+      birthdaySong.pause();
 
-  showPhoto(currentPhoto);
+      updateMusicButtons(false);
 
-});
+    }
+  }
 
 
-photoViewer.addEventListener('click', e => {
+  function updateMusicButtons(isPlaying) {
 
-  if (e.target === photoViewer) {
+    if (musicButton) {
 
-    photoViewer.classList.remove('active');
+      musicButton.textContent =
+        isPlaying
+          ? "⏸ Pause Birthday Music"
+          : "🎵 Play Birthday Music";
+
+    }
+
+    if (heroMusicButton) {
+
+      heroMusicButton.textContent =
+        isPlaying
+          ? "🎵 Music: ON"
+          : "🎵 Music: OFF";
+
+    }
+  }
+
+
+  if (musicButton) {
+    musicButton.addEventListener("click", toggleMusic);
+  }
+
+  if (heroMusicButton) {
+    heroMusicButton.addEventListener("click", toggleMusic);
+  }
+
+
+  /* =========================
+     SURPRISE BOX
+  ========================= */
+
+  if (openBox && surpriseBox) {
+
+    openBox.addEventListener("click", () => {
+
+      if (surpriseBox.classList.contains("open")) {
+        return;
+      }
+
+      surpriseBox.classList.add("open");
+
+      document
+        .querySelectorAll(".box-video video")
+        .forEach(video => {
+
+          video.play().catch(() => {});
+
+        });
+
+      if (surpriseMessage) {
+
+        surpriseMessage.textContent =
+          "Surprise! 💗 I hope these little memories make you smile.";
+
+      }
+
+      openBox.textContent =
+        "You found it! 💕";
+
+      confettiBurst(65);
+      burstHearts(60);
+
+    });
 
   }
 
+
+  /* =========================
+     VIDEO FULLSCREEN
+  ========================= */
+
+  function openVideoFullscreen(videoId) {
+
+    const video =
+      document.getElementById(videoId);
+
+    if (!video) {
+      console.error("Video not found:", videoId);
+      return;
+    }
+
+
+    /* Safari / iPhone */
+
+    if (
+      typeof video.webkitEnterFullscreen ===
+      "function"
+    ) {
+
+      video.webkitEnterFullscreen();
+
+      return;
+    }
+
+
+    /* Chrome / Edge / Firefox */
+
+    if (
+      typeof video.requestFullscreen ===
+      "function"
+    ) {
+
+      video.requestFullscreen().catch(error => {
+
+        console.error(
+          "Fullscreen error:",
+          error
+        );
+
+      });
+
+      return;
+    }
+
+
+    /* Older WebKit */
+
+    if (
+      typeof video.webkitRequestFullscreen ===
+      "function"
+    ) {
+
+      video.webkitRequestFullscreen();
+
+      return;
+    }
+
+    alert(
+      "Fullscreen is not supported by this browser."
+    );
+  }
+
+
+  window.openVideoFullscreen =
+    openVideoFullscreen;
+
+
+  /* =========================
+     CLICK ANYWHERE = HEART
+  ========================= */
+
+  document.addEventListener("click", event => {
+
+    if (
+      event.target.closest(
+        "button, input, video, .gallery-item, .photo-viewer"
+      )
+    ) {
+      return;
+    }
+
+    if (!heartLayer) return;
+
+    const heart =
+      document.createElement("span");
+
+    heart.className = "float-heart";
+
+    const hearts =
+      ["♡", "♥", "💗", "✨"];
+
+    heart.textContent =
+      hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+      event.clientX + "px";
+
+    heart.style.top =
+      event.clientY + "px";
+
+    heart.style.position = "fixed";
+    heart.style.fontSize = "20px";
+
+    heartLayer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 2300);
+
+  });
+
+
+  /* =========================
+     GALLERY VIEWER
+  ========================= */
+
+  const galleryItems =
+    document.querySelectorAll(".gallery-item");
+
+  const photoViewer =
+    document.getElementById("photoViewer");
+
+  const viewerImage =
+    document.getElementById("viewerImage");
+
+  const viewerCaption =
+    document.getElementById("viewerCaption");
+
+  const viewerClose =
+    document.getElementById("viewerClose");
+
+  const viewerPrev =
+    document.getElementById("viewerPrev");
+
+  const viewerNext =
+    document.getElementById("viewerNext");
+
+  let currentPhoto = 0;
+
+  const galleryPhotos = [];
+
+
+  galleryItems.forEach((item, index) => {
+
+    const image =
+      item.querySelector("img");
+
+    const caption =
+      item.querySelector(
+        ".gallery-caption p"
+      );
+
+    if (!image) return;
+
+    galleryPhotos.push({
+
+      src: image.src,
+
+      caption:
+        caption
+          ? caption.textContent
+          : ""
+
+    });
+
+
+    item.addEventListener("click", () => {
+
+      currentPhoto = index;
+
+      showPhoto(currentPhoto);
+
+      if (photoViewer) {
+        photoViewer.classList.add("active");
+      }
+
+    });
+
+  });
+
+
+  function showPhoto(index) {
+
+    if (
+      !galleryPhotos.length ||
+      !viewerImage ||
+      !viewerCaption
+    ) {
+      return;
+    }
+
+    viewerImage.src =
+      galleryPhotos[index].src;
+
+    viewerCaption.textContent =
+      galleryPhotos[index].caption;
+
+  }
+
+
+  if (viewerClose && photoViewer) {
+
+    viewerClose.addEventListener("click", () => {
+
+      photoViewer.classList.remove("active");
+
+    });
+
+  }
+
+
+  if (viewerNext) {
+
+    viewerNext.addEventListener("click", () => {
+
+      if (!galleryPhotos.length) return;
+
+      currentPhoto =
+        (currentPhoto + 1) %
+        galleryPhotos.length;
+
+      showPhoto(currentPhoto);
+
+    });
+
+  }
+
+
+  if (viewerPrev) {
+
+    viewerPrev.addEventListener("click", () => {
+
+      if (!galleryPhotos.length) return;
+
+      currentPhoto =
+        (currentPhoto - 1 +
+          galleryPhotos.length) %
+        galleryPhotos.length;
+
+      showPhoto(currentPhoto);
+
+    });
+
+  }
+
+
+  if (photoViewer) {
+
+    photoViewer.addEventListener("click", event => {
+
+      if (event.target === photoViewer) {
+
+        photoViewer.classList.remove("active");
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================
+     KEYBOARD GALLERY CONTROLS
+  ========================= */
+
+  document.addEventListener("keydown", event => {
+
+    if (
+      !photoViewer ||
+      !photoViewer.classList.contains("active")
+    ) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+
+      photoViewer.classList.remove("active");
+
+    }
+
+    if (event.key === "ArrowRight") {
+
+      if (viewerNext) {
+        viewerNext.click();
+      }
+
+    }
+
+    if (event.key === "ArrowLeft") {
+
+      if (viewerPrev) {
+        viewerPrev.click();
+      }
+
+    }
+
+  });
+
+
+  /* =========================
+     GENTLE FLOATING HEARTS
+  ========================= */
+
+  setInterval(() => {
+
+    if (
+      document.visibilityState === "visible"
+    ) {
+
+      burstHearts(1);
+
+    }
+
+  }, 900);
+
+
+  /* =========================
+     DEBUG MESSAGE
+  ========================= */
+
+  console.log(
+    "💗 Nisho Birthday Website loaded successfully!"
+  );
+
 });
-
-
-document.addEventListener('keydown', e => {
-
-  if (!photoViewer.classList.contains('active')) return;
-
-  if (e.key === 'Escape') {
-
-    photoViewer.classList.remove('active');
-
-  }
-
-  if (e.key === 'ArrowRight') {
-
-    viewerNext.click();
-
-  }
-
-  if (e.key === 'ArrowLeft') {
-
-    viewerPrev.click();
-
-  }
-
-});
-
-
-/* =========================
-   GENTLE FLOATING HEARTS
-========================= */
-
-setInterval(() => {
-
-  if (document.visibilityState === 'visible') {
-
-    burstHearts(1);
-
-  }
-
-}, 900);
 ```
