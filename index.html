@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,9 +128,8 @@
       </div>
 
       <button class="music-button hero-music" id="heroMusicButton">🎵 Music: OFF</button>
-
       <audio id="birthdaySong" loop preload="metadata">
-        <source src="./birthday-song.mp3" type="audio/mpeg">
+       <source src="./birthday-song.mp3" type="audio/mpeg">
       </audio>
     </header>
 
@@ -142,14 +140,13 @@
       <p class="section-intro">Some things are easier to write when the page is covered in hearts.</p>
 
       <div class="letter-scene">
-
         <div class="polaroid polaroid-one">
-          <img src="./photo1.jpeg" alt="Birthday memory">
+         <img src="./photo1.jpeg" alt="Birthday memory">
           <span>♡</span>
         </div>
 
         <div class="polaroid polaroid-two">
-          <img src="./photo2.jpeg" alt="Birthday memory">
+          <img src="./photo2.jpeg"" alt="Birthday memory">
           <span>✦</span>
         </div>
 
@@ -164,10 +161,9 @@
         </article>
 
         <div class="polaroid polaroid-three">
-          <img src="./photo3.jpeg" alt="Birthday memory">
+         <img src="./photo3.jpeg" alt="Birthday memory">
           <span>♡</span>
         </div>
-
       </div>
     </section>
 
@@ -178,55 +174,12 @@
       <p class="section-intro">Click any picture to open it. Replace the sample pictures with your own photos.</p>
 
       <div class="gallery-grid">
-
-        <div class="gallery-item tall">
-          <img src="./gallery1.jpeg" alt="Gallery photo 1">
-          <div class="gallery-caption">
-            <span>♡</span>
-            <p>A beautiful moment</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="./gallery2.jpeg" alt="Gallery photo 2">
-          <div class="gallery-caption">
-            <span>✦</span>
-            <p>One to remember</p>
-          </div>
-        </div>
-
-        <div class="gallery-item wide">
-          <img src="./gallery3.jpeg" alt="Gallery photo 3">
-          <div class="gallery-caption">
-            <span>♡</span>
-            <p>Moments like this ✨</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="./gallery4.jpeg" alt="Gallery photo 4">
-          <div class="gallery-caption">
-            <span>🌸</span>
-            <p>Keep this smile</p>
-          </div>
-        </div>
-
-        <div class="gallery-item tall">
-          <img src="./gallery5.jpeg" alt="Gallery photo 5">
-          <div class="gallery-caption">
-            <span>💗</span>
-            <p>A little happiness</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="./gallery6.jpeg" alt="Gallery photo 6">
-          <div class="gallery-caption">
-            <span>✨</span>
-            <p>Forever special</p>
-          </div>
-        </div>
-
+        <div class="gallery-item tall"><img src="./gallery1.jpeg" alt="Gallery photo 1"><div class="gallery-caption"><span>♡</span><p>A beautiful moment</p></div></div>
+        <div class="gallery-item"><img src="./gallery2.jpeg" alt="Gallery photo 2"><div class="gallery-caption"><span>✦</span><p>One to remember</p></div></div>
+        <div class="gallery-item wide"><img src="./gallery3.jpeg" alt="Gallery photo 3"><div class="gallery-caption"><span>♡</span><p>Moments like this ✨</p></div></div>
+        <div class="gallery-item"><img src="./gallery4.jpeg" alt="Gallery photo 4"><div class="gallery-caption"><span>🌸</span><p>Keep this smile</p></div></div>
+        <div class="gallery-item tall"><img src="./gallery5.jpeg" alt="Gallery photo 5"><div class="gallery-caption"><span>💗</span><p>A little happiness</p></div></div>
+        <div class="gallery-item"><img src="./gallery6.jpeg" alt="Gallery photo 6"><div class="gallery-caption"><span>✨</span><p>Forever special</p></div></div>
       </div>
     </section>
 
@@ -243,50 +196,9 @@
         <div class="surprise-box" id="surpriseBox">
           <div class="box-back"></div>
 
-          <!-- VIDEO 1 -->
-          <div class="box-video video-a">
-            <video id="surpriseVideo1" controls muted loop playsinline preload="metadata">
-              <source src="./surprise1.mp4" type="video/mp4">
-              Your browser does not support this video.
-            </video>
-
-            <button
-              class="video-fullscreen"
-              onclick="openVideoFullscreen('surpriseVideo1')"
-              aria-label="Open video 1 fullscreen">
-              ⛶
-            </button>
-          </div>
-
-          <!-- VIDEO 2 -->
-          <div class="box-video video-b">
-            <video id="surpriseVideo2" controls muted loop playsinline preload="metadata">
-              <source src="./surprise2.mp4" type="video/mp4">
-              Your browser does not support this video.
-            </video>
-
-            <button
-              class="video-fullscreen"
-              onclick="openVideoFullscreen('surpriseVideo2')"
-              aria-label="Open video 2 fullscreen">
-              ⛶
-            </button>
-          </div>
-
-          <!-- VIDEO 3 -->
-          <div class="box-video video-c">
-            <video id="surpriseVideo3" controls muted loop playsinline preload="metadata">
-              <source src="./surprise3.mp4" type="video/mp4">
-              Your browser does not support this video.
-            </video>
-
-            <button
-              class="video-fullscreen"
-              onclick="openVideoFullscreen('surpriseVideo3')"
-              aria-label="Open video 3 fullscreen">
-              ⛶
-            </button>
-          </div>
+          <div class="box-video video-a"><video src="./surprise1.mp4" muted loop playsinline></video></div>
+          <div class="box-video video-b"><video src="./surprise2.mp4" muted loop playsinline></video></div>
+          <div class="box-video video-c"><video src="./surprise3.mp4" muted loop playsinline></video></div>
 
           <div class="box-body"></div>
           <div class="box-ribbon vertical"></div>
@@ -310,24 +222,19 @@
     </section>
 
     <footer>Made especially for you · with lots of 💗</footer>
-
   </main>
 
   <!-- PHOTO VIEWER -->
   <div class="photo-viewer" id="photoViewer">
     <button class="viewer-close" id="viewerClose">×</button>
     <button class="viewer-prev" id="viewerPrev">‹</button>
-
     <div class="viewer-content">
       <img id="viewerImage" src="" alt="Gallery preview">
       <p id="viewerCaption"></p>
     </div>
-
     <button class="viewer-next" id="viewerNext">›</button>
   </div>
 
   <script src="./script.js" defer></script>
-
 </body>
 </html>
-```
