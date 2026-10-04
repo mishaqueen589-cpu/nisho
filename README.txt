@@ -35,6 +35,6 @@ FEATURES
 CUSTOMIZE
 ----------
 Change the password at the top of script.js:
-const CORRECT_PASSWORD = 'birthday123';
+const CORRECT_PASSWORD = '831';
 
 Change the letter text directly in index.html.
