@@ -415,15 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 boxLid.classList.toggle("open");
             }
 
-            const videos = document.querySelectorAll(".box-video video");
-
-            videos.forEach(function (video) {
-
-                video.play().catch(function () {
-                    console.log("Video waiting for user interaction.");
-                });
-
-            });
+            
 
             if (surpriseMessage) {
 
@@ -596,7 +588,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     });
+// ================================
+// SURPRISE VIDEOS - ONE AT A TIME
+// ================================
 
+const surpriseVideos = document.querySelectorAll(".box-video video");
+
+surpriseVideos.forEach(function (video) {
+
+    video.addEventListener("play", function () {
+
+        surpriseVideos.forEach(function (otherVideo) {
+
+            if (otherVideo !== video) {
+                otherVideo.pause();
+            }
+
+        });
+
+    });
+
+});
     // ================================
     // FLOATING HEARTS
     // ================================

@@ -922,7 +922,7 @@ rgba(45, 30, 35, 0.72)
 /* ================= SURPRISE BOX ================= */
 
 /* =========================================
-   SURPRISE BOX - VISIBLE PLAYABLE VIDEOS
+   SURPRISE VIDEOS - POP OUT WHEN OPENED
 ========================================= */
 
 .surprise-box {
@@ -933,8 +933,7 @@ rgba(45, 30, 35, 0.72)
     overflow: visible;
 }
 
-/* VIDEO CARDS */
-
+/* Videos start hidden inside the gift */
 .surprise-box .box-video {
     position: absolute;
     width: 180px;
@@ -942,154 +941,111 @@ rgba(45, 30, 35, 0.72)
     padding: 7px;
     background: #fff;
     border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 
-    visibility: visible;
-    opacity: 1;
+    left: 50%;
+    top: 230px;
 
-    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        transform 0.8s ease,
+        opacity 0.5s ease,
+        visibility 0s linear 0.8s;
+
+    z-index: 20;
 }
-
-/* ACTUAL VIDEO */
 
 .surprise-box .box-video video {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     background: #111;
-
     border-radius: 10px;
-
-    visibility: visible;
-    opacity: 1;
-
-    cursor: pointer;
 }
 
-/* VIDEO 1 */
-
-.surprise-box .video-a {
-    left: 50%;
-    top: 70px;
-
-    transform: translateX(-115%);
-
-    z-index: 20;
-}
-
-/* VIDEO 2 */
-
-.surprise-box .video-b {
-    left: 50%;
-    top: 35px;
-
-    transform: translateX(-50%);
-
-    z-index: 21;
-}
-
-/* VIDEO 3 */
-
+/* Closed position */
+.surprise-box .video-a,
+.surprise-box .video-b,
 .surprise-box .video-c {
-    left: 50%;
-    top: 70px;
+    transform: translateX(-50%) scale(0.6);
+}
 
-    transform: translateX(15%);
+/* When gift opens */
+.surprise-box:has(.box-lid.open) .box-video {
+    opacity: 1;
+    visibility: visible;
+}
 
-    z-index: 20;
+/* Video 1 */
+.surprise-box:has(.box-lid.open) .video-a {
+    transform: translate(-115%, -150px) rotate(-7deg) scale(1);
+    transition-delay: 0.15s;
+}
+
+/* Video 2 */
+.surprise-box:has(.box-lid.open) .video-b {
+    transform: translate(-50%, -180px) rotate(0deg) scale(1);
+    transition-delay: 0.3s;
+}
+
+/* Video 3 */
+.surprise-box:has(.box-lid.open) .video-c {
+    transform: translate(15%, -150px) rotate(7deg) scale(1);
+    transition-delay: 0.45s;
 }
 
 
-/* =========================================
-   GIFT BOX BODY
-========================================= */
-
+/* Gift box body */
 .surprise-box .box-body {
     position: absolute;
-
     left: 50%;
     bottom: 20px;
-
     transform: translateX(-50%);
-
     width: 370px;
     height: 175px;
-
     background: #f4a2bd;
-
     border-radius: 12px;
-
     z-index: 10;
 }
 
-
-/* =========================================
-   VERTICAL RIBBON
-========================================= */
-
+/* Ribbon */
 .surprise-box .box-ribbon.vertical {
     position: absolute;
-
     left: 50%;
     bottom: 20px;
-
     transform: translateX(-50%);
-
     width: 55px;
     height: 175px;
-
     background: #fff;
-
     opacity: 0.85;
-
     z-index: 11;
 }
 
-
-/* =========================================
-   GIFT BOX LID
-========================================= */
-
+/* Lid */
 .surprise-box .box-lid {
     position: absolute;
-
     left: 50%;
     bottom: 175px;
-
     transform: translateX(-50%);
-
     width: 400px;
     height: 70px;
-
     background: #f28eaf;
-
     border-radius: 12px;
-
-    z-index: 15;
-
+    z-index: 25;
     transition: transform 0.8s ease;
 }
 
-
-/* LID OPENS */
-
+/* Open lid */
 .surprise-box .box-lid.open {
-    transform:
-        translateX(-50%)
-        translateY(-100px)
-        rotate(-3deg);
+    transform: translateX(-50%) translateY(-100px) rotate(-3deg);
+    z-index: 5;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
-
+/* Mobile */
 @media (max-width: 700px) {
 
     .surprise-box {
@@ -1100,32 +1056,27 @@ rgba(45, 30, 35, 0.72)
     .surprise-box .box-video {
         width: 145px;
         height: 210px;
+        top: 250px;
     }
 
-    .surprise-box .video-a {
-        left: 50%;
-        top: 70px;
-        transform: translateX(-105%);
-    }
-
-    .surprise-box .video-b {
-        left: 50%;
-        top: 35px;
-        transform: translateX(-50%);
-    }
-
-    .surprise-box .video-c {
-        left: 50%;
-        top: 70px;
-        transform: translateX(5%);
+    .surprise-box .box-lid {
+        width: 320px;
     }
 
     .surprise-box .box-body {
         width: 300px;
     }
 
-    .surprise-box .box-lid {
-        width: 320px;
+    .surprise-box .box-lid.open ~ .video-a {
+        transform: translate(-105%, -150px) rotate(-6deg) scale(1);
+    }
+
+    .surprise-box .box-lid.open ~ .video-b {
+        transform: translate(-50%, -175px) rotate(0deg) scale(1);
+    }
+
+    .surprise-box .box-lid.open ~ .video-c {
+        transform: translate(5%, -150px) rotate(6deg) scale(1);
     }
 }
 /* ================= FINAL ================= */
