@@ -540,103 +540,112 @@
 
 <!-- ================= SURPRISE VIDEOS ================= -->
 
-<section
-  class="content-section surprise-section"
-  id="surpriseSection"
->
+<!-- SURPRISE VIDEOS -->
+<section class="content-section surprise-section" id="surpriseSection">
 
-  <p class="section-number">
-    03 — SURPRISE
-  </p>
+    <p class="section-number">03 — SURPRISE</p>
 
-  <h2>
-    Open the little gift box 🎁
-  </h2>
+    <h2>Open the little gift box 🎁</h2>
 
-  <p class="section-intro">
-    There is something moving inside... 👀
-  </p>
+    <p class="section-intro">
+        Click a video to play it. 💗
+    </p>
 
+    <div class="surprise-box-wrap">
 
-  <div class="surprise-area">
+        <div class="sticker sticker-flower box-flower">🌺</div>
+        <div class="sticker sticker-star box-star">★</div>
 
 
-    <div class="surprise-box" id="surpriseBox">
-
-      <div class="box-back"></div>
-
-     <div class="box-video video-a">
-    <video id="surpriseVideo1"
-           controls
-           playsinline
-           preload="auto"
-           width="100%">
-        <source src="./surprise1.mp4" type="video/mp4">
-        Your browser cannot play this video.
-    </video>
-</div>
-
-      <!-- VIDEO 2 -->
-
-     <div class="box-video video-b">
-    <video id="surpriseVideo2"
-           controls
-           playsinline
-           preload="auto"
-           width="100%">
-        <source src="./surprise2.mp4" type="video/mp4">
-        Your browser cannot play this video.
-    </video>
-</div>
+        <!-- GIFT BOX -->
+        <div class="surprise-box" id="surpriseBox">
 
 
-      <!-- VIDEO 3 -->
+            <!-- VIDEO 1 -->
+            <div class="box-video video-a">
 
-      <div class="box-video video-c">
-    <video id="surpriseVideo3"
-           controls
-           playsinline
-           preload="auto"
-           width="100%">
-        <source src="./surprise3.mp4" type="video/mp4">
-        Your browser cannot play this video.
-    </video>
-</div>
+                <video
+                    id="surpriseVideo1"
+                    controls
+                    playsinline
+                    preload="metadata"
+                    width="100%"
+                >
+                    <source src="./surprise1.mp4" type="video/mp4">
+                    Your browser cannot play this video.
+                </video>
+
+            </div>
 
 
-      <div class="box-body"></div>
+            <!-- VIDEO 2 -->
+            <div class="box-video video-b">
 
-      <div class="box-ribbon"></div>
+                <video
+                    id="surpriseVideo2"
+                    controls
+                    playsinline
+                    preload="metadata"
+                    width="100%"
+                >
+                    <source src="./surprise2.mp4" type="video/mp4">
+                    Your browser cannot play this video.
+                </video>
 
-      <div
-        class="box-lid"
-        id="boxLid"
-      >
-        🎀
-      </div>
+            </div>
+
+
+            <!-- VIDEO 3 -->
+            <div class="box-video video-c">
+
+                <video
+                    id="surpriseVideo3"
+                    controls
+                    playsinline
+                    preload="metadata"
+                    width="100%"
+                >
+                    <source src="./surprise3.mp4" type="video/mp4">
+                    Your browser cannot play this video.
+                </video>
+
+            </div>
+
+
+            <!-- GIFT BOX BODY -->
+            <div class="box-body"></div>
+
+            <div class="box-ribbon vertical"></div>
+
+
+            <!-- GIFT BOX LID -->
+            <div class="box-lid" id="boxLid">
+                <span>🎀</span>
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE + BUTTON -->
+        <div class="box-message">
+
+            <p id="surpriseMessage">
+                There is something inside... 👀
+            </p>
+
+            <button
+                id="openBox"
+                class="pink-btn big-btn"
+                type="button"
+            >
+                Open My Gift 🎁
+            </button>
+
+        </div>
 
     </div>
-
-
-    <div class="box-message">
-
-      <p id="surpriseMessage">
-        There is something inside... 👀
-      </p>
-
-      <button
-        id="openBox"
-        class="pink-btn big-btn"
-      >
-        Open My Gift 🎁
-      </button>
-
-    </div>
-
-  </div>
 
 </section>
-
 
 <!-- ================= FINAL ================= -->
 

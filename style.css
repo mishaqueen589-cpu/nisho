@@ -921,243 +921,213 @@ rgba(45, 30, 35, 0.72)
 
 /* ================= SURPRISE BOX ================= */
 
-.surprise-section {
-text-align: center;
-}
-
-.surprise-area {
-max-width: 850px;
-
-margin: 30px auto;
-}
+/* =========================================
+   SURPRISE BOX - VISIBLE PLAYABLE VIDEOS
+========================================= */
 
 .surprise-box {
-width: min(700px, 95%);
-
-height: 470px;
-
-margin: 40px auto 15px;
-
-position: relative;
+    position: relative;
+    width: min(90vw, 700px);
+    height: 520px;
+    margin: 50px auto;
+    overflow: visible;
 }
 
-.box-body {
-position: absolute;
+/* VIDEO CARDS */
 
-left: 10%;
+.surprise-box .box-video {
+    position: absolute;
+    width: 180px;
+    height: 250px;
+    padding: 7px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
 
-right: 10%;
+    visibility: visible;
+    opacity: 1;
 
-bottom: 0;
-
-height: 280px;
-
-border-radius:
-12px 12px 25px 25px;
-
-background:
-linear-gradient(
-135deg,
-#e98ca8,
-#d86f91
-);
-
-box-shadow:
-0 18px 38px
-rgba(120, 60, 80, 0.2);
-
-z-index: 2;
+    cursor: pointer;
 }
 
-.box-back {
-position: absolute;
+/* ACTUAL VIDEO */
 
-left: 10%;
+.surprise-box .box-video video {
+    display: block;
 
-right: 10%;
+    width: 100%;
+    height: 100%;
 
-bottom: 235px;
+    object-fit: cover;
 
-height: 110px;
+    background: #111;
 
-background: #f2b2c6;
+    border-radius: 10px;
 
-border-radius:
-15px 15px 5px 5px;
+    visibility: visible;
+    opacity: 1;
 
-z-index: 1;
+    cursor: pointer;
 }
 
-.box-lid {
-position: absolute;
+/* VIDEO 1 */
 
-left: 6%;
+.surprise-box .video-a {
+    left: 50%;
+    top: 70px;
 
-right: 6%;
+    transform: translateX(-115%);
 
-bottom: 250px;
-
-height: 68px;
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-
-color: white;
-
-font-size: 30px;
-
-background:
-linear-gradient(
-135deg,
-#efa1b9,
-#d86d90
-);
-
-border-radius: 12px;
-
-box-shadow:
-0 10px 25px
-rgba(120, 60, 80, 0.18);
-
-z-index: 8;
-
-transition:
-0.8s ease;
-
-transform-origin:
-bottom center;
+    z-index: 20;
 }
 
-.box-ribbon {
-position: absolute;
+/* VIDEO 2 */
 
-width: 55px;
+.surprise-box .video-b {
+    left: 50%;
+    top: 35px;
 
-left:
-calc(50% - 27px);
+    transform: translateX(-50%);
 
-top: 130px;
-
-bottom: 0;
-
-background:
-rgba(255, 245, 248, 0.65);
-
-z-index: 6;
+    z-index: 21;
 }
 
-/* VIDEOS */
+/* VIDEO 3 */
 
-.box-video {
-position: absolute;
+.surprise-box .video-c {
+    left: 50%;
+    top: 70px;
 
-width: 210px;
+    transform: translateX(15%);
 
-height: 155px;
-
-overflow: hidden;
-
-border-radius: 16px;
-
-background: #282124;
-
-opacity: 0;
-
-transform:
-translateY(80px)
-scale(0.7);
-
-transition:
-0.8s ease;
-
-z-index: 7;
-
-box-shadow:
-0 12px 28px
-rgba(50, 25, 35, 0.25);
+    z-index: 20;
 }
 
-.box-video video {
-width: 100%;
 
-height: 100%;
+/* =========================================
+   GIFT BOX BODY
+========================================= */
 
-display: block;
+.surprise-box .box-body {
+    position: absolute;
 
-object-fit: cover;
+    left: 50%;
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+    width: 370px;
+    height: 175px;
+
+    background: #f4a2bd;
+
+    border-radius: 12px;
+
+    z-index: 10;
 }
 
-.video-one {
-left: 4%;
 
-bottom: 80px;
+/* =========================================
+   VERTICAL RIBBON
+========================================= */
+
+.surprise-box .box-ribbon.vertical {
+    position: absolute;
+
+    left: 50%;
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+    width: 55px;
+    height: 175px;
+
+    background: #fff;
+
+    opacity: 0.85;
+
+    z-index: 11;
 }
 
-.video-two {
-left:
-calc(50% - 105px);
 
-bottom: 135px;
+/* =========================================
+   GIFT BOX LID
+========================================= */
+
+.surprise-box .box-lid {
+    position: absolute;
+
+    left: 50%;
+    bottom: 175px;
+
+    transform: translateX(-50%);
+
+    width: 400px;
+    height: 70px;
+
+    background: #f28eaf;
+
+    border-radius: 12px;
+
+    z-index: 15;
+
+    transition: transform 0.8s ease;
 }
 
-.video-three {
-right: 4%;
 
-bottom: 80px;
+/* LID OPENS */
+
+.surprise-box .box-lid.open {
+    transform:
+        translateX(-50%)
+        translateY(-100px)
+        rotate(-3deg);
 }
 
-.surprise-box.opened .box-lid {
-transform:
-translateY(-120px)
-rotate(-6deg);
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .surprise-box {
+        width: 100%;
+        height: 650px;
+    }
+
+    .surprise-box .box-video {
+        width: 145px;
+        height: 210px;
+    }
+
+    .surprise-box .video-a {
+        left: 50%;
+        top: 70px;
+        transform: translateX(-105%);
+    }
+
+    .surprise-box .video-b {
+        left: 50%;
+        top: 35px;
+        transform: translateX(-50%);
+    }
+
+    .surprise-box .video-c {
+        left: 50%;
+        top: 70px;
+        transform: translateX(5%);
+    }
+
+    .surprise-box .box-body {
+        width: 300px;
+    }
+
+    .surprise-box .box-lid {
+        width: 320px;
+    }
 }
-
-.surprise-box.opened .box-video {
-opacity: 1;
-
-transform:
-translateY(0)
-scale(1);
-}
-
-.video-fullscreen {
-position: absolute;
-
-top: 7px;
-
-right: 7px;
-
-width: 32px;
-
-height: 32px;
-
-border: none;
-
-border-radius: 50%;
-
-color: #5a4549;
-
-background:
-rgba(255, 255, 255, 0.9);
-
-z-index: 5;
-}
-
-.box-message {
-position: relative;
-
-z-index: 20;
-}
-
-.box-message p {
-color: #806d70;
-
-margin-bottom: 18px;
-}
-
 /* ================= FINAL ================= */
 
 .final-section {
