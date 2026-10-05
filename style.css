@@ -1569,3 +1569,97 @@ right: 0;
 }
 
 }
+/* =========================================
+   LETTER PHOTOS - MOBILE FIX
+========================================= */
+
+.letter-scene {
+    position: relative;
+    width: 100%;
+    min-height: 850px;
+    overflow: visible;
+}
+
+.letter-scene .polaroid {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10;
+}
+
+.letter-scene .polaroid img {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+/* PHONE */
+@media (max-width: 700px) {
+
+    .letter-scene {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        min-height: auto;
+        padding: 20px 10px 40px;
+    }
+
+    .letter-scene .polaroid {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        transform: rotate(0deg) !important;
+
+        width: 220px;
+        max-width: 85vw;
+
+        margin: 0 auto;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+
+        z-index: 20;
+    }
+
+    .letter-scene .polaroid img {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: 280px;
+        object-fit: cover;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Keep the letter between the photos */
+    .letter-scene .letter-paper {
+        position: relative !important;
+        order: 2;
+        width: 90%;
+        max-width: 500px;
+        margin: 10px auto 25px;
+        z-index: 15;
+    }
+
+    .letter-scene .polaroid-one {
+        order: 1;
+    }
+
+    .letter-scene .polaroid-two {
+        order: 3;
+    }
+
+    .letter-scene .polaroid-three {
+        order: 4;
+    }
+}

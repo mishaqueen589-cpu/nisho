@@ -1,40 +1,56 @@
-BIRTHDAY GIFT WEBSITE — READY PROJECT
-=====================================
+# 💗 Nisho Birthday Website 🎂
 
-1. Open index.html in VS Code / Live Server.
-2. Password: birthday123
-3. The project already includes the uploaded video as three sample surprise videos.
-4. Replace these whenever you want:
-   video/surprise1.mp4
-   video/surprise2.mp4
-   video/surprise3.mp4
-5. Replace the sample SVG gallery/letter pictures with your own pictures. The easiest method is to keep the same filenames, or edit the image src in index.html.
-6. Replace music/birthday-song.mp3 with your own song if you want a different song. Keep the same filename.
-7. For best results in VS Code, use the Live Server extension rather than opening the HTML directly.
+A cute and interactive birthday surprise website created specially for Nisho by Mishi. 💕
+The website contains animated screens, a secret password, birthday wishes, memories, music, and surprise videos.
 
-FEATURES
---------
-- Secret password screen
-- Happy Birthday screen
-- Yes / No gift question
-- Cute sad panda reaction when No is clicked
-- Animated 3-2-1 countdown
-- Animated gift-choice cards
-- Letter with three photo cards
-- Pinterest-style Gallery
-- Fullscreen Gallery viewer with next/previous controls
-- Animated surprise gift box
-- Three video surprises popping out of the box
-- Background music button
-- Floating hearts
-- Click-to-create hearts
-- Confetti
-- Animated flowers, stars, balloons, cake, teddy and gift stickers
-- Responsive mobile design
+## 🌸 Features
 
-CUSTOMIZE
-----------
-Change the password at the top of script.js:
-const CORRECT_PASSWORD = 'birthday123';
+- 🔐 Secret password unlock screen
+- 🎂 Animated birthday welcome screen
+- 💗 Yes/No surprise interaction
+- ⏳ Countdown animation
+- 🎁 Interactive gift selection
+- 💌 Personal birthday letter
+- 📸 Memory gallery with photo viewer
+- 🎵 Birthday background music
+- 🎬 Surprise videos inside a gift box
+- 🎀 Animated gift box opening
+- 💕 Floating hearts and confetti animations
+- 📱 Mobile-friendly responsive design
+- ▶️ Videos can be played individually
+- ⛶ Fullscreen video support
 
-Change the letter text directly in index.html.
+## 🔑 Password
+
+The website uses a secret password to unlock the birthday surprise.
+
+**Password:** `831`
+
+**Hint:** `I Like You`
+
+## 📁 Project Structure
+
+```text
+nisho/
+│
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+│
+├── birthday-song.mp3
+│
+├── photo1.jpeg
+├── photo2.jpeg
+├── photo3.jpeg
+│
+├── gallery1.jpeg
+├── gallery2.jpeg
+├── gallery3.jpeg
+├── gallery4.jpeg
+├── gallery5.jpeg
+├── gallery6.jpeg
+│
+├── surprise1.mp4
+├── surprise2.mp4
+└── surprise3.mp4s
